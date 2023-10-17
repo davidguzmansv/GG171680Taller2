@@ -32,6 +32,7 @@ public class Cajero extends JFrame{
     private JTable table3;
     private JTextField textField11;
     private JTextField textField12;
+    private JComboBox comboBox1;
 
     public Cajero(String title) {
         super(title);
