@@ -45,7 +45,8 @@
       <component id="a60a7" class="javax.swing.JTextField" binding="textField1" default-binding="true">
         <constraints>
           <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+            <preferred-size width="124" height="30"/>
+            <maximum-size width="100" height="-1"/>
           </grid>
         </constraints>
         <properties/>
@@ -53,7 +54,8 @@
       <component id="d912a" class="javax.swing.JTextField" binding="textField2" default-binding="true">
         <constraints>
           <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+            <preferred-size width="124" height="30"/>
+            <maximum-size width="200" height="-1"/>
           </grid>
         </constraints>
         <properties/>
@@ -61,7 +63,8 @@
       <component id="4f810" class="javax.swing.JTextField" binding="textField3" default-binding="true">
         <constraints>
           <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+            <preferred-size width="124" height="30"/>
+            <maximum-size width="150" height="-1"/>
           </grid>
         </constraints>
         <properties/>
@@ -69,7 +72,8 @@
       <component id="c9f06" class="javax.swing.JTextField" binding="textField4" default-binding="true">
         <constraints>
           <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+            <preferred-size width="124" height="30"/>
+            <maximum-size width="50" height="-1"/>
           </grid>
         </constraints>
         <properties/>
@@ -141,7 +145,8 @@
       <component id="b78a4" class="javax.swing.JTextField" binding="textField5" default-binding="true">
         <constraints>
           <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+            <preferred-size width="124" height="30"/>
+            <maximum-size width="100" height="-1"/>
           </grid>
         </constraints>
         <properties/>
@@ -189,7 +194,8 @@
       <component id="b447c" class="javax.swing.JTextField" binding="textField7" default-binding="true">
         <constraints>
           <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+            <preferred-size width="124" height="30"/>
+            <maximum-size width="100" height="-1"/>
           </grid>
         </constraints>
         <properties/>
@@ -229,7 +235,8 @@
       <component id="a421e" class="javax.swing.JTextField" binding="textField9" default-binding="true">
         <constraints>
           <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+            <preferred-size width="124" height="30"/>
+            <maximum-size width="100" height="-1"/>
           </grid>
         </constraints>
         <properties/>
@@ -333,7 +340,8 @@
       <component id="1d71" class="javax.swing.JTextField" binding="textField11" default-binding="true">
         <constraints>
           <grid row="9" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+            <preferred-size width="124" height="30"/>
+            <maximum-size width="100" height="-1"/>
           </grid>
         </constraints>
         <properties/>
@@ -341,7 +349,8 @@
       <component id="79e06" class="javax.swing.JTextField" binding="textField12" default-binding="true">
         <constraints>
           <grid row="11" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+            <preferred-size width="124" height="30"/>
+            <maximum-size width="100" height="-1"/>
           </grid>
         </constraints>
         <properties/>
