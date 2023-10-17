@@ -1,6 +1,11 @@
+import sv.edu.udb.form.Cajero;
+import javax.swing.*;
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+    JFrame frame = new Cajero("Ingreso de Datos");
+    frame.setVisible(true);
     }
 }
