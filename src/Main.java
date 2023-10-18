@@ -5,7 +5,8 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
 
-    JFrame frame = new Cajero("Ingreso de Datos");
+    JFrame frame = new Cajero("Ingreso de clases.Datos");
+    frame.setLocationRelativeTo(null);
     frame.setVisible(true);
     }
 }

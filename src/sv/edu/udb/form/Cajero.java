@@ -1,11 +1,17 @@
 package sv.edu.udb.form;
 
+import clases.Datos;
+
 import javax.swing.*;
 import java.awt.*;
-public class Cajero extends JFrame{
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+public class Cajero extends JFrame {
     private JPanel pnlCajero;
     private JButton crearClienteButton;
-    private JButton ingresaraCuentasButton;
+    private JButton btningresaraCuentas;
     private JButton salirButton;
     private JTextField textField1;
     private JTextField textField2;
@@ -32,7 +38,12 @@ public class Cajero extends JFrame{
     private JTable table3;
     private JTextField textField11;
     private JTextField textField12;
-    private JComboBox comboBox1;
+    private JComboBox cmbMenu1;
+    private JTextField txtUsuario;
+    private JLabel lblClave;
+    private JLabel lblUsuario;
+    private JPasswordField txtClave;
+    private JButton btnIngresar;
 
     public Cajero(String title) {
         super(title);
@@ -40,5 +51,42 @@ public class Cajero extends JFrame{
         this.setContentPane(pnlCajero);
         this.setMinimumSize(new Dimension(600, 500));
         this.setLocationRelativeTo(getParent());
+        this.setSize(1300,600);
+
+        // crear objetos
+        btningresaraCuentas = new JButton("Ingresar a cuentas");
+        txtUsuario = new JTextField(("Usuario"));
+        txtClave = new JPasswordField("***");
+
+
+        // Definir propiedades de los objetos
+        btningresaraCuentas.setToolTipText("Ingresar a la informacion de las cuentas");
+
+        // Agregar eventos a los objetos
+        btningresaraCuentas.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btningresaraCuentasActionPerformed(e);
+            }
+        }));
+
     }
+
+    private void btningresaraCuentasActionPerformed(ActionEvent e) {
+        Datos datosCuenta = new Datos();
+        if(!datosCuenta.validarUsuario(txtUsuario.getText(), new String((txtClave.getPassword())))) {
+            //jOptionPane.showMessageDialog(null, "Usuario o contraseña no validos");
+            txtUsuario.setText((""));
+            txtClave.setText("");
+            txtUsuario.requestFocusInWindow();
+            return;
+        }
+
+    }
+
+
+
+
+
+
 }
