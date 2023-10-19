@@ -36,10 +36,8 @@ public class Cajero extends JFrame {
     private JTextField txtCuenta3;
     private JTextField textField10;
     private JButton abonarButton;
-    private JTable table1;
     private JTable tblDatos;
     private JTextField txtCuenta4;
-    private JComboBox cmbMenu1;
     private JTextField txtUsuario;
     private JLabel lblClave;
     private JLabel lblUsuario;
@@ -55,6 +53,7 @@ public class Cajero extends JFrame {
     private JLabel lblCuenta4;
     private JButton guardarButton;
     private JButton regresarButton;
+    private JComboBox cmbCuentas;
     DefaultTableModel model=null;
 
     public Cajero(String title) {
@@ -81,15 +80,10 @@ public class Cajero extends JFrame {
         txtCuenta2.setVisible(false);
         txtCuenta3.setVisible(false);
         txtCuenta4.setVisible(false);
-        crearCuentaButton.setVisible(false);
-        retirosButton.setVisible(false);
-        abonosButton.setVisible(false);
-        consultaXCuentaButton.setVisible(false);
-        detalleDeCuentasButton.setVisible(false);
-        transaccionesXCuentaButton.setVisible(false);
-        salirButton1.setVisible(false);
         guardarButton.setVisible(false);
         regresarButton.setVisible(false);
+        cmbCuentas.setVisible(false);
+        salirButton1.setVisible(false);
 
         // crear objetos
         btningresaraCuentas = new JButton("Ingresar a cuentas");
@@ -131,8 +125,34 @@ public class Cajero extends JFrame {
                 tblDatos(e);
             }
         });
+        regresarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                regresarButton();
+            }
+        });
     }
 
+    private void regresarButton(){
+        lblId.setVisible(false);
+        lblNombre.setVisible(false);
+        lblDui.setVisible(false);
+        lblPin.setVisible(false);
+        lblCuenta1.setVisible(false);
+        lblCuenta2.setVisible(false);
+        lblCuenta3.setVisible(false);
+        lblCuenta4.setVisible(false);
+        txtId.setVisible(false);
+        txtDui.setVisible(false);
+        txtNombre.setVisible(false);
+        txtPin.setVisible(false);
+        txtCuenta1.setVisible(false);
+        txtCuenta2.setVisible(false);
+        txtCuenta3.setVisible(false);
+        txtCuenta4.setVisible(false);
+        guardarButton.setVisible(false);
+        regresarButton.setVisible(false);
+    }
     private void tblDatos(MouseEvent e){
         int fila = tblDatos.rowAtPoint((e.getPoint()));
         int columna = tblDatos.columnAtPoint(e.getPoint());
@@ -211,7 +231,8 @@ public class Cajero extends JFrame {
             txtUsuario.requestFocusInWindow();
             return;
         }
-
+        cmbCuentas.setVisible(true);
+        salirButton1.setVisible(true);
     }
 
 
