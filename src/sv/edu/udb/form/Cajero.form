@@ -18,14 +18,6 @@
           <text value="Crear cliente"/>
         </properties>
       </component>
-      <component id="e4bea" class="javax.swing.JButton" binding="btningresaraCuentas">
-        <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Ingresar a cuentas"/>
-        </properties>
-      </component>
       <component id="d4d17" class="javax.swing.JButton" binding="salirButton" default-binding="true">
         <constraints>
           <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -89,7 +81,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="cc91a" class="javax.swing.JTextField" binding="textField6" default-binding="true">
+      <component id="cc91a" class="javax.swing.JTextField" binding="txtInicial">
         <constraints>
           <grid row="6" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -113,7 +105,7 @@
           <text value="Cuenta"/>
         </properties>
       </component>
-      <component id="1211f" class="javax.swing.JLabel">
+      <component id="1211f" class="javax.swing.JLabel" binding="lblInicial">
         <constraints>
           <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -138,7 +130,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="c2ddb" class="javax.swing.JLabel">
+      <component id="c2ddb" class="javax.swing.JLabel" binding="lblRetiro">
         <constraints>
           <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -146,7 +138,7 @@
           <text value="Cantidad"/>
         </properties>
       </component>
-      <component id="44b9e" class="javax.swing.JTextField" binding="textField8" default-binding="true">
+      <component id="44b9e" class="javax.swing.JTextField" binding="txtRetiro">
         <constraints>
           <grid row="7" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -179,7 +171,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="26f9c" class="javax.swing.JLabel">
+      <component id="26f9c" class="javax.swing.JLabel" binding="lblAbono">
         <constraints>
           <grid row="8" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -187,7 +179,7 @@
           <text value="Cantidad"/>
         </properties>
       </component>
-      <component id="66978" class="javax.swing.JTextField" binding="textField10" default-binding="true">
+      <component id="66978" class="javax.swing.JTextField" binding="txtAbono">
         <constraints>
           <grid row="8" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -336,6 +328,7 @@
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <editable value="false"/>
           <model>
             <item value="Crear Cuenta"/>
             <item value="Consulta Cuentas"/>
@@ -359,6 +352,27 @@
           <text value="Salir"/>
         </properties>
       </component>
+      <component id="c578c" class="javax.swing.JButton" binding="movimientosDeCuentasButton" default-binding="true">
+        <constraints>
+          <grid row="5" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Movimientos de Cuentas"/>
+        </properties>
+      </component>
+      <scrollpane id="4032e">
+        <constraints>
+          <grid row="11" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="ca73d" class="javax.swing.JTable" binding="tblcuentas">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>

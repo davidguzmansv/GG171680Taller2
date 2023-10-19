@@ -1,14 +1,10 @@
 package sv.edu.udb.form;
 
-import clases.Datos;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 
 public class Cajero extends JFrame {
@@ -20,21 +16,15 @@ public class Cajero extends JFrame {
     private JTextField txtNombre;
     private JTextField txtDui;
     private JTextField txtPin;
-    private JButton crearCuentaButton;
-    private JButton retirosButton;
-    private JButton abonosButton;
-    private JButton consultaXCuentaButton;
-    private JButton detalleDeCuentasButton;
-    private JButton transaccionesXCuentaButton;
     private JButton salirButton1;
     private JTextField txtCuenta1;
-    private JTextField textField6;
+    private JTextField txtInicial;
     private JButton agregarButton;
     private JTextField txtCuenta2;
-    private JTextField textField8;
+    private JTextField txtRetiro;
     private JButton retirarButton;
     private JTextField txtCuenta3;
-    private JTextField textField10;
+    private JTextField txtAbono;
     private JButton abonarButton;
     private JTable tblDatos;
     private JTextField txtCuenta4;
@@ -54,6 +44,11 @@ public class Cajero extends JFrame {
     private JButton guardarButton;
     private JButton regresarButton;
     private JComboBox cmbCuentas;
+    private JButton movimientosDeCuentasButton;
+    private JTable tblcuentas;
+    private JLabel lblInicial;
+    private JLabel lblRetiro;
+    private JLabel lblAbono;
     DefaultTableModel model=null;
 
     public Cajero(String title) {
@@ -84,7 +79,17 @@ public class Cajero extends JFrame {
         regresarButton.setVisible(false);
         cmbCuentas.setVisible(false);
         salirButton1.setVisible(false);
-
+        tblcuentas.setVisible(false);
+        txtInicial.setVisible(false);
+        txtAbono.setVisible(false);
+        txtRetiro.setVisible(false);
+        lblInicial.setVisible(false);
+        lblRetiro.setVisible(false);
+        lblAbono.setVisible(false);
+        retirarButton.setVisible(false);
+        agregarButton.setVisible(false);
+        abonarButton.setVisible(false);
+        tblcuentas.setVisible(false);
         // crear objetos
         btningresaraCuentas = new JButton("Ingresar a cuentas");
         txtUsuario = new JTextField(("Usuario"));
@@ -103,13 +108,6 @@ public class Cajero extends JFrame {
         btningresaraCuentas.setToolTipText("Ingresar a la informacion de las cuentas");
 
         // Agregar eventos a los objetos
-        btningresaraCuentas.addActionListener((new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btningresaraCuentasActionPerformed(e);
-            }
-        }));
-
         crearClienteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { crearClienteButtonActionPerformed(e); }
@@ -131,6 +129,35 @@ public class Cajero extends JFrame {
                 regresarButton();
             }
         });
+        movimientosDeCuentasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                movimientosDeCuentasButtonActionPerformed(e);
+            }
+        });
+        salirButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                salirButton1();
+            }
+        });
+        cmbCuentas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cmbCuentas();
+            }
+        });
+    }
+    private void cmbCuentas(){
+        
+    }
+    private void salirButton1(){
+        cmbCuentas.setVisible(false);
+        salirButton1.setVisible(false);
+    }
+    private void movimientosDeCuentasButtonActionPerformed(java.awt.event.ActionEvent e){
+        cmbCuentas.setVisible(true);
+        salirButton1.setVisible(true);
     }
 
     private void regresarButton(){
@@ -222,22 +249,4 @@ public class Cajero extends JFrame {
         guardarButton.setVisible(true);
         regresarButton.setVisible(true);
     }
-    private void btningresaraCuentasActionPerformed(java.awt.event.ActionEvent e) {
-        Datos datosCuenta = new Datos();
-        if(!datosCuenta.validarUsuario(txtUsuario.getText(), new String((txtClave.getPassword())))) {
-            //jOptionPane.showMessageDialog(null, "Usuario o contraseña no validos");
-            txtUsuario.setText((""));
-            txtClave.setText("");
-            txtUsuario.requestFocusInWindow();
-            return;
-        }
-        cmbCuentas.setVisible(true);
-        salirButton1.setVisible(true);
-    }
-
-
-
-
-
-
 }
