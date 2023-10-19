@@ -3,6 +3,7 @@ package sv.edu.udb.form;
 import clases.Datos;
 
 import javax.swing.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +16,7 @@ public class Cajero extends JFrame {
     private JPanel pnlCajero;
     private JButton crearClienteButton;
     private JButton btningresaraCuentas;
-    private JButton salirButton;
+    private JButton btnSalir;
     private JTextField txtId;
     private JTextField txtNombre;
     private JTextField txtDui;
@@ -93,7 +94,9 @@ public class Cajero extends JFrame {
 
         // crear objetos
         btningresaraCuentas = new JButton("Ingresar a cuentas");
-        txtUsuario = new JTextField(("Usuario"));
+        btnSalir = new JButton("Salir");
+        btnIngresar= new JButton("Ingresar");
+        txtUsuario = new JTextField("Usuario");
         txtClave = new JPasswordField("***");
 
         //Arreglo de objetos para tabla Datos y crear columnas
@@ -113,6 +116,20 @@ public class Cajero extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 btningresaraCuentasActionPerformed(e);
+            }
+        }));
+
+        btnIngresar.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnIngresarActionPerformed(e);
+            }
+        }));
+
+        btnSalir.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnSalirActionPerformed(e);
             }
         }));
 
@@ -203,9 +220,13 @@ public class Cajero extends JFrame {
         regresarButton.setVisible(true);
     }
     private void btningresaraCuentasActionPerformed(java.awt.event.ActionEvent e) {
+
+    }
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent e) {
         Datos datosCuenta = new Datos();
         if(!datosCuenta.validarUsuario(txtUsuario.getText(), new String((txtClave.getPassword())))) {
-            //jOptionPane.showMessageDialog(null, "Usuario o contraseña no validos");
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña no validos");
             txtUsuario.setText((""));
             txtClave.setText("");
             txtUsuario.requestFocusInWindow();
@@ -213,6 +234,11 @@ public class Cajero extends JFrame {
         }
 
     }
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent e) {
+        System.exit(0);
+        }
+
 
 
 
