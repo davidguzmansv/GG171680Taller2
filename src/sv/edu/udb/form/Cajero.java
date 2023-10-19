@@ -49,6 +49,8 @@ public class Cajero extends JFrame {
     private JLabel lblInicial;
     private JLabel lblRetiro;
     private JLabel lblAbono;
+    private JScrollPane jscuentas;
+    private JScrollPane jsdatos;
     DefaultTableModel model=null;
 
     public Cajero(String title) {
@@ -90,6 +92,8 @@ public class Cajero extends JFrame {
         agregarButton.setVisible(false);
         abonarButton.setVisible(false);
         tblcuentas.setVisible(false);
+        jscuentas.setVisible(false);
+        jsdatos.setVisible(false);
         // crear objetos
         btningresaraCuentas = new JButton("Ingresar a cuentas");
         txtUsuario = new JTextField(("Usuario"));
@@ -149,7 +153,14 @@ public class Cajero extends JFrame {
         });
     }
     private void cmbCuentas(){
-
+        if(cmbCuentas.getSelectedIndex() == 0){
+            lblDui.setVisible(true);
+            lblPin.setVisible(true);
+            lblInicial.setVisible(true);
+            txtDui.setVisible(true);
+            txtPin.setVisible(true);
+            txtInicial.setVisible(true);
+        }
     }
     private void salirButton1(){
         cmbCuentas.setVisible(false);
@@ -179,6 +190,8 @@ public class Cajero extends JFrame {
         txtCuenta4.setVisible(false);
         guardarButton.setVisible(false);
         regresarButton.setVisible(false);
+        tblcuentas.setVisible(false);
+        tblDatos.setVisible(false);
     }
     private void tblDatos(MouseEvent e){
         int fila = tblDatos.rowAtPoint((e.getPoint()));
@@ -248,5 +261,7 @@ public class Cajero extends JFrame {
         txtCuenta1.setVisible(true);
         guardarButton.setVisible(true);
         regresarButton.setVisible(true);
+        tblDatos.setVisible(true);
+        jsdatos.setVisible(true);
     }
 }
