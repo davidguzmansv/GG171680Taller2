@@ -3,6 +3,7 @@ package sv.edu.udb.form;
 import clases.Datos;
 
 import javax.swing.*;
+import javax.swing.JOptionPane;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,6 +62,7 @@ public class Cajero extends JFrame {
 
         // Definir propiedades de los objetos
         btningresaraCuentas.setToolTipText("Ingresar a la informacion de las cuentas");
+        btnIngresar.setToolTipText("Ingresar a la informacion de las cuentas");
 
         // Agregar eventos a los objetos
         btningresaraCuentas.addActionListener((new ActionListener() {
@@ -70,12 +72,31 @@ public class Cajero extends JFrame {
             }
         }));
 
+        btnIngresar.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnIngresarActionPerformed(e);
+            }
+        }));
+
     }
 
     private void btningresaraCuentasActionPerformed(ActionEvent e) {
         Datos datosCuenta = new Datos();
         if(!datosCuenta.validarUsuario(txtUsuario.getText(), new String((txtClave.getPassword())))) {
-            //jOptionPane.showMessageDialog(null, "Usuario o contraseña no validos");
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña no validos");
+            txtUsuario.setText((""));
+            txtClave.setText("");
+            txtUsuario.requestFocusInWindow();
+            return;
+        }
+
+    }
+
+    private void btnIngresarActionPerformed(ActionEvent e) {
+        Datos datosCuenta = new Datos();
+        if(!datosCuenta.validarUsuario(txtUsuario.getText(), new String((txtClave.getPassword())))) {
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña no validos");
             txtUsuario.setText((""));
             txtClave.setText("");
             txtUsuario.requestFocusInWindow();
