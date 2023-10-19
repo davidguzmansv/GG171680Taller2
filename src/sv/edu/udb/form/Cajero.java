@@ -81,7 +81,6 @@ public class Cajero extends JFrame {
         regresarButton.setVisible(false);
         cmbCuentas.setVisible(false);
         salirButton1.setVisible(false);
-        tblcuentas.setVisible(false);
         txtInicial.setVisible(false);
         txtAbono.setVisible(false);
         txtRetiro.setVisible(false);
@@ -92,6 +91,7 @@ public class Cajero extends JFrame {
         agregarButton.setVisible(false);
         abonarButton.setVisible(false);
         tblcuentas.setVisible(false);
+        tblDatos.setVisible(false);
         jscuentas.setVisible(false);
         jsdatos.setVisible(false);
         // crear objetos
@@ -151,6 +151,15 @@ public class Cajero extends JFrame {
                 cmbCuentas();
             }
         });
+        agregarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                agregarButton();
+            }
+        });
+    }
+    private void agregarButton(){
+
     }
     private void cmbCuentas(){
         if(cmbCuentas.getSelectedIndex() == 0){
@@ -160,11 +169,51 @@ public class Cajero extends JFrame {
             txtDui.setVisible(true);
             txtPin.setVisible(true);
             txtInicial.setVisible(true);
+            jscuentas.setVisible(true);
+            tblcuentas.setVisible(true);
+            agregarButton.setVisible(true);
+        }
+        else if (cmbCuentas.getSelectedIndex() == 1) {
+
+            txtInicial.setVisible(true);
+            txtAbono.setVisible(true);
+            txtRetiro.setVisible(true);
+            lblInicial.setVisible(true);
+            lblRetiro.setVisible(true);
+            lblAbono.setVisible(true);
+            retirarButton.setVisible(true);
+            agregarButton.setVisible(true);
+            abonarButton.setVisible(true);
+            tblcuentas.setVisible(true);
+            jscuentas.setVisible(true);
+        }
+        else if (cmbCuentas.getSelectedIndex() == 2) {
+            lblDui.setVisible(true);
+            lblPin.setVisible(true);
+            txtDui.setVisible(true);
+            txtPin.setVisible(true);
+            jscuentas.setVisible(true);
+            tblcuentas.setVisible(true);
         }
     }
     private void salirButton1(){
         cmbCuentas.setVisible(false);
         salirButton1.setVisible(false);
+        txtInicial.setVisible(false);
+        txtAbono.setVisible(false);
+        txtRetiro.setVisible(false);
+        lblInicial.setVisible(false);
+        lblRetiro.setVisible(false);
+        lblAbono.setVisible(false);
+        retirarButton.setVisible(false);
+        agregarButton.setVisible(false);
+        abonarButton.setVisible(false);
+        tblcuentas.setVisible(false);
+        jscuentas.setVisible(false);
+        lblDui.setVisible(false);
+        lblPin.setVisible(false);
+        txtDui.setVisible(false);
+        txtPin.setVisible(false);
     }
     private void movimientosDeCuentasButtonActionPerformed(java.awt.event.ActionEvent e){
         cmbCuentas.setVisible(true);
@@ -190,8 +239,8 @@ public class Cajero extends JFrame {
         txtCuenta4.setVisible(false);
         guardarButton.setVisible(false);
         regresarButton.setVisible(false);
-        tblcuentas.setVisible(false);
         tblDatos.setVisible(false);
+        jsdatos.setVisible(false);
     }
     private void tblDatos(MouseEvent e){
         int fila = tblDatos.rowAtPoint((e.getPoint()));
