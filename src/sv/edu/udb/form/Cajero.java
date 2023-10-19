@@ -166,15 +166,24 @@ public class Cajero extends JFrame {
             lblDui.setVisible(true);
             lblPin.setVisible(true);
             lblInicial.setVisible(true);
+            lblRetiro.setVisible(false);
+            lblAbono.setVisible(false);
             txtDui.setVisible(true);
             txtPin.setVisible(true);
             txtInicial.setVisible(true);
+            txtAbono.setVisible(false);
+            txtRetiro.setVisible(false);
+            retirarButton.setVisible(false);
+            abonarButton.setVisible(false);
             jscuentas.setVisible(true);
             tblcuentas.setVisible(true);
             agregarButton.setVisible(true);
         }
         else if (cmbCuentas.getSelectedIndex() == 1) {
-
+            lblDui.setVisible(true);
+            lblPin.setVisible(true);
+            txtDui.setVisible(true);
+            txtPin.setVisible(true);
             txtInicial.setVisible(true);
             txtAbono.setVisible(true);
             txtRetiro.setVisible(true);
@@ -192,6 +201,15 @@ public class Cajero extends JFrame {
             lblPin.setVisible(true);
             txtDui.setVisible(true);
             txtPin.setVisible(true);
+            lblInicial.setVisible(false);
+            lblRetiro.setVisible(false);
+            lblAbono.setVisible(false);
+            txtInicial.setVisible(false);
+            txtAbono.setVisible(false);
+            txtRetiro.setVisible(false);
+            retirarButton.setVisible(false);
+            agregarButton.setVisible(false);
+            abonarButton.setVisible(false);
             jscuentas.setVisible(true);
             tblcuentas.setVisible(true);
         }
