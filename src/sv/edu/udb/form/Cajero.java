@@ -97,7 +97,7 @@ public class Cajero extends JFrame {
         //Arreglo de objetos para tabla Datos y crear columnas
         Object [] [] data =null;
         String [] colums= {
-                "Id", "Nombre", "Dui", "Pin", "Cuenta 1", "Cuenta 2", "Cuenta 3", "Cuenta 4"
+                "Id","Nombre","Dui","Pin","Cuenta 1","Cuenta 2","Cuenta 3","Cuenta 4"
         };
 
         //Instanciamos el modelo
@@ -143,6 +143,9 @@ public class Cajero extends JFrame {
         cuenta3 = txtCuenta3.getText();
         cuenta4 = txtCuenta4.getText();
 
+        JOptionPane.showMessageDialog(null,"Datos Obtenidos: \n ID: " +id+
+                "\n nombre: "+ nombre+"\n Dui: "+dui+"\n Cuentas: "+cuenta1);
+
         Object [] newRow={
                 id,
                 nombre,
@@ -152,6 +155,7 @@ public class Cajero extends JFrame {
                 cuenta2,
                 cuenta3,
                 cuenta4 };
+        model.addRow(newRow);
     }
     private void crearClienteButtonActionPerformed(java.awt.event.ActionEvent e){
         lblId.setVisible(true);
