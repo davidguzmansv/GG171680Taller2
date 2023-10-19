@@ -7,6 +7,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class Cajero extends JFrame {
@@ -122,6 +124,29 @@ public class Cajero extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { guardarButton();  }
         });
+        tblDatos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                tblDatos(e);
+            }
+        });
+    }
+
+    private void tblDatos(MouseEvent e){
+        int fila = tblDatos.rowAtPoint((e.getPoint()));
+        int columna = tblDatos.columnAtPoint(e.getPoint());
+
+        if((fila > -1) && (columna > -1)){
+            txtId.setText(model.getValueAt(fila,0).toString());
+            txtNombre.setText(model.getValueAt(fila,1).toString());
+            txtDui.setText(model.getValueAt(fila,3).toString());
+            txtPin.setText(model.getValueAt(fila,4).toString());
+            txtCuenta1.setText(model.getValueAt(fila,5).toString());
+            txtCuenta2.setText(model.getValueAt(fila,6).toString());
+            txtCuenta3.setText(model.getValueAt(fila,7).toString());
+            txtCuenta4.setText(model.getValueAt(fila,8).toString());
+        }
     }
 
     private void guardarButton(){
