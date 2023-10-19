@@ -149,7 +149,7 @@ public class Cajero extends JFrame {
         });
     }
     private void cmbCuentas(){
-        
+
     }
     private void salirButton1(){
         cmbCuentas.setVisible(false);
