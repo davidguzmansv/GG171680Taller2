@@ -157,6 +157,13 @@ public class Cajero extends JFrame {
                 agregarButton();
             }
         });
+        tblcuentas.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                tblcuentas(e);
+            }
+        });
     }
     private void agregarButton(){
 
@@ -275,7 +282,21 @@ public class Cajero extends JFrame {
             txtCuenta4.setText(model.getValueAt(fila,8).toString());
         }
     }
+    private void tblcuentas(MouseEvent e){
+        int fila = tblcuentas.rowAtPoint((e.getPoint()));
+        int columna = tblcuentas.columnAtPoint(e.getPoint());
 
+        if((fila > -1) && (columna > -1)){
+            txtId.setText(model.getValueAt(fila,0).toString());
+            txtNombre.setText(model.getValueAt(fila,1).toString());
+            txtDui.setText(model.getValueAt(fila,3).toString());
+            txtPin.setText(model.getValueAt(fila,4).toString());
+            txtCuenta1.setText(model.getValueAt(fila,5).toString());
+            txtCuenta2.setText(model.getValueAt(fila,6).toString());
+            txtCuenta3.setText(model.getValueAt(fila,7).toString());
+            txtCuenta4.setText(model.getValueAt(fila,8).toString());
+        }
+    }
     private void guardarButton(){
         String id;
         String nombre;
