@@ -3,6 +3,7 @@ package sv.edu.udb.form;
 import clases.Datos;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,10 +35,8 @@ public class Cajero extends JFrame {
     private JTextField textField10;
     private JButton abonarButton;
     private JTable table1;
-    private JTable table2;
-    private JTable table3;
+    private JTable tblDatos;
     private JTextField txtCuenta4;
-    private JTextField textField12;
     private JComboBox cmbMenu1;
     private JTextField txtUsuario;
     private JLabel lblClave;
@@ -52,6 +51,9 @@ public class Cajero extends JFrame {
     private JLabel lblCuenta2;
     private JLabel lblCuenta3;
     private JLabel lblCuenta4;
+    private JButton guardarButton;
+    private JButton regresarButton;
+    DefaultTableModel model=null;
 
     public Cajero(String title) {
         super(title);
@@ -84,13 +86,23 @@ public class Cajero extends JFrame {
         detalleDeCuentasButton.setVisible(false);
         transaccionesXCuentaButton.setVisible(false);
         salirButton1.setVisible(false);
+        guardarButton.setVisible(false);
+        regresarButton.setVisible(false);
 
         // crear objetos
         btningresaraCuentas = new JButton("Ingresar a cuentas");
         txtUsuario = new JTextField(("Usuario"));
         txtClave = new JPasswordField("***");
 
+        //Arreglo de objetos para tabla Datos y crear columnas
+        Object [] [] data =null;
+        String [] colums= {
+                "Id", "Nombre", "Dui", "Pin", "Cuenta 1", "Cuenta 2", "Cuenta 3", "Cuenta 4"
+        };
 
+        //Instanciamos el modelo
+        model =new DefaultTableModel(data, colums);
+        tblDatos.setModel(model);
         // Definir propiedades de los objetos
         btningresaraCuentas.setToolTipText("Ingresar a la informacion de las cuentas");
 
@@ -106,8 +118,41 @@ public class Cajero extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { crearClienteButtonActionPerformed(e); }
         });
+        guardarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { guardarButton();  }
+        });
     }
 
+    private void guardarButton(){
+        String id;
+        String nombre;
+        String dui;
+        String pin;
+        String cuenta1;
+        String cuenta2;
+        String cuenta3;
+        String cuenta4;
+
+        id = txtId.getText();
+        nombre = txtNombre.getText();
+        dui = txtDui.getText();
+        pin = txtPin.getText();
+        cuenta1 = txtCuenta1.getText();
+        cuenta2 = txtCuenta2.getText();
+        cuenta3 = txtCuenta3.getText();
+        cuenta4 = txtCuenta4.getText();
+
+        Object [] newRow={
+                id,
+                nombre,
+                dui,
+                pin,
+                cuenta1,
+                cuenta2,
+                cuenta3,
+                cuenta4 };
+    }
     private void crearClienteButtonActionPerformed(java.awt.event.ActionEvent e){
         lblId.setVisible(true);
         lblDui.setVisible(true);
@@ -125,6 +170,8 @@ public class Cajero extends JFrame {
         txtCuenta3.setVisible(true);
         txtCuenta2.setVisible(true);
         txtCuenta1.setVisible(true);
+        guardarButton.setVisible(true);
+        regresarButton.setVisible(true);
     }
     private void btningresaraCuentasActionPerformed(java.awt.event.ActionEvent e) {
         Datos datosCuenta = new Datos();
