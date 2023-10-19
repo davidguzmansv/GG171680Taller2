@@ -1,13 +1,21 @@
 package sv.edu.udb.form;
 
+import clases.Datos;
+
 import javax.swing.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import com.opencsv.*;
 
 
-public class Cajero extends JFrame {
+public class Cajero extends javax.swing.JFrame {
     private JPanel pnlCajero;
     private JButton crearClienteButton;
     private JButton btningresaraCuentas;
@@ -96,7 +104,8 @@ public class Cajero extends JFrame {
         jsdatos.setVisible(false);
         // crear objetos
         btningresaraCuentas = new JButton("Ingresar a cuentas");
-        txtUsuario = new JTextField(("Usuario"));
+        btnIngresar = new JButton("Ingresar");
+        txtUsuario = new JTextField("Usuario");
         txtClave = new JPasswordField("***");
 
         //Arreglo de objetos para tabla Datos y crear columnas
@@ -107,11 +116,21 @@ public class Cajero extends JFrame {
 
         //Instanciamos el modelo
         model =new DefaultTableModel(data, colums);
-        tblDatos.setModel(model);
+        this.tblDatos.setModel(model);
+
+        this.loadDataFromCsvToTable();
+
         // Definir propiedades de los objetos
         btningresaraCuentas.setToolTipText("Ingresar a la informacion de las cuentas");
 
         // Agregar eventos a los objetos
+        btnIngresar.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnIngresarActionPerformed(e);
+            }
+        }));
+
         crearClienteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { crearClienteButtonActionPerformed(e); }
@@ -329,6 +348,8 @@ public class Cajero extends JFrame {
                 cuenta3,
                 cuenta4 };
         model.addRow(newRow);
+
+        this.saveDataInCsv(id, nombre, dui, pin, cuenta1, cuenta2, cuenta3, cuenta4);
     }
     private void crearClienteButtonActionPerformed(java.awt.event.ActionEvent e){
         lblId.setVisible(true);
@@ -352,4 +373,75 @@ public class Cajero extends JFrame {
         tblDatos.setVisible(true);
         jsdatos.setVisible(true);
     }
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent e) {
+        Datos datosCuenta = new Datos();
+        if(!datosCuenta.validarUsuario(txtUsuario.getText(), new String((txtClave.getPassword())))) {
+            JOptionPane.showMessageDialog(null, "Usuario o contraseÃ±a no validos");
+            txtUsuario.setText((""));
+            txtClave.setText("");
+            txtUsuario.requestFocusInWindow();
+            return;
+        }
+
+    }
+
+
+    private void loadDataFromCsvToTable(){
+        FileReader fileCsv = null;
+        String path = System.getProperty("user.dir");
+        BufferedReader br = null;
+
+        this.model.setRowCount(0);
+
+        try{
+            fileCsv = new FileReader(path + "/src/sv/edu/udb/util/personas.csv");
+            br = new BufferedReader(fileCsv);
+            String line = br.readLine();
+            while(line != null){
+                String[] fields = line.split(",");
+
+                String id = fields[0];
+                String nombre = fields[1];
+                String dui = fields[2];
+                String pin = fields[3];
+                String cuenta1 = fields[4];
+                String cuenta2 = fields[5];
+                String cuenta3 = fields[6];
+                String cuenta4 = fields[7];
+
+                Object[] newRow={id, nombre, dui, pin, cuenta1, cuenta2, cuenta3, cuenta4};
+                this.model.addRow(newRow);
+                line = br.readLine();
+            }
+        }
+        catch(Exception e){
+            System.out.print(e.toString());
+        }
+    }
+
+    private void saveDataInCsv(String id, String nombre, String dui, String pin, String cuenta1, String cuenta2, String cuenta3, String cuenta4){
+        FileWriter fileCsv = null;
+        String path = System.getProperty("user.dir");
+        BufferedReader br = null;
+
+        try{
+            fileCsv = new FileWriter(path + "/src/sv/edu/udb/util/personas.csv", true);
+            PrintWriter writer = new PrintWriter(fileCsv);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("\n");
+            sb.append(id+","+nombre+","+dui+","+pin+","+cuenta1+","+cuenta2+","+cuenta3+","+cuenta4 );
+
+            writer.write(sb.toString());
+            writer.close();
+
+            this.loadDataFromCsvToTable();
+        }
+        catch(Exception e){
+            System.out.print(e.toString());
+        }
+    }
+
+
 }
