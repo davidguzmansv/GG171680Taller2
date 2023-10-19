@@ -2,6 +2,8 @@
   <library name="openjdk-21">
     <CLASSES>
       <root url="file://$USER_HOME$/.jdks/openjdk-21" />
+      <root url="jar://$PROJECT_DIR$/aboslutelayout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/opencsv-5.8.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

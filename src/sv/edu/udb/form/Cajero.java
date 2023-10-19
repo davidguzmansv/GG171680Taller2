@@ -10,9 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import com.opencsv.*;
 
 
-public class Cajero extends JFrame {
+public class Cajero extends javax.swing.JFrame {
     private JPanel pnlCajero;
     private JButton crearClienteButton;
     private JButton btningresaraCuentas;
@@ -21,7 +26,7 @@ public class Cajero extends JFrame {
     private JTextField txtNombre;
     private JTextField txtDui;
     private JTextField txtPin;
-    private JButton crearCuentaButton;
+    private JButton btnCrearCuenta;
     private JButton retirosButton;
     private JButton abonosButton;
     private JButton consultaXCuentaButton;
@@ -56,7 +61,7 @@ public class Cajero extends JFrame {
     private JLabel lblCuenta4;
     private JButton guardarButton;
     private JButton regresarButton;
-    DefaultTableModel model=null;
+    DefaultTableModel model = null;
 
     public Cajero(String title) {
         super(title);
@@ -82,7 +87,7 @@ public class Cajero extends JFrame {
         txtCuenta2.setVisible(false);
         txtCuenta3.setVisible(false);
         txtCuenta4.setVisible(false);
-        crearCuentaButton.setVisible(false);
+        btnCrearCuenta.setVisible(false);
         retirosButton.setVisible(false);
         abonosButton.setVisible(false);
         consultaXCuentaButton.setVisible(false);
@@ -107,7 +112,10 @@ public class Cajero extends JFrame {
 
         //Instanciamos el modelo
         model =new DefaultTableModel(data, colums);
-        tblDatos.setModel(model);
+        this.tblDatos.setModel(model);
+
+        this.loadDataFromCsvToTable();
+
         // Definir propiedades de los objetos
         btningresaraCuentas.setToolTipText("Ingresar a la informacion de las cuentas");
 
@@ -198,6 +206,8 @@ public class Cajero extends JFrame {
                 cuenta3,
                 cuenta4 };
         model.addRow(newRow);
+
+        this.saveDataInCsv(id, nombre, dui, pin, cuenta1, cuenta2, cuenta3, cuenta4);
     }
     private void crearClienteButtonActionPerformed(java.awt.event.ActionEvent e){
         lblId.setVisible(true);
@@ -235,14 +245,65 @@ public class Cajero extends JFrame {
 
     }
 
+    private void loadDataFromCsvToTable(){
+        FileReader fileCsv = null;
+        String path = System.getProperty("user.dir");
+        BufferedReader br = null;
+
+        this.model.setRowCount(0);
+
+        try{
+            fileCsv = new FileReader(path + "/src/sv/edu/udb/util/personas.csv");
+            br = new BufferedReader(fileCsv);
+            String line = br.readLine();
+            while(line != null){
+                String[] fields = line.split(",");
+
+                String id = fields[0];
+                String nombre = fields[1];
+                String dui = fields[2];
+                String pin = fields[3];
+                String cuenta1 = fields[4];
+                String cuenta2 = fields[5];
+                String cuenta3 = fields[6];
+                String cuenta4 = fields[7];
+
+                Object[] newRow={id, nombre, dui, pin, cuenta1, cuenta2, cuenta3, cuenta4};
+                this.model.addRow(newRow);
+                line = br.readLine();
+            }
+        }
+        catch(Exception e){
+            System.out.print(e.toString());
+        }
+    }
+
+    private void saveDataInCsv(String id, String nombre, String dui, String pin, String cuenta1, String cuenta2, String cuenta3, String cuenta4){
+        FileWriter fileCsv = null;
+        String path = System.getProperty("user.dir");
+        BufferedReader br = null;
+
+        try{
+            fileCsv = new FileWriter(path + "/src/sv/edu/udb/util/personas.csv", true);
+            PrintWriter writer = new PrintWriter(fileCsv);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("\n");
+            sb.append(id+","+nombre+","+dui+","+pin+","+cuenta1+","+cuenta2+","+cuenta3+","+cuenta4 );
+
+            writer.write(sb.toString());
+            writer.close();
+
+            this.loadDataFromCsvToTable();
+        }
+        catch(Exception e){
+            System.out.print(e.toString());
+        }
+    }
+
     private void btnSalirActionPerformed(java.awt.event.ActionEvent e) {
         System.exit(0);
         }
-
-
-
-
-
 
 
 }
