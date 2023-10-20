@@ -102,11 +102,16 @@ public class Cajero extends javax.swing.JFrame {
         tblDatos.setVisible(false);
         jscuentas.setVisible(false);
         jsdatos.setVisible(false);
+        crearClienteButton.setVisible(false);
+        cmbCuentas.setVisible(false);
+        salirButton1.setVisible(false);
+        salirButton.setVisible(false);
+        movimientosDeCuentasButton.setVisible(false);
         // crear objetos
         btningresaraCuentas = new JButton("Ingresar a cuentas");
-        btnIngresar = new JButton("Ingresar");
-        txtUsuario = new JTextField("Usuario");
-        txtClave = new JPasswordField("***");
+        //btnIngresar = new JButton("Ingresar");
+        //txtUsuario = new JTextField("Usuario");
+        //txtClave = new JPasswordField("***");
 
         //Arreglo de objetos para tabla Datos y crear columnas
         Object [] [] data =null;
@@ -124,12 +129,10 @@ public class Cajero extends javax.swing.JFrame {
         btningresaraCuentas.setToolTipText("Ingresar a la informacion de las cuentas");
 
         // Agregar eventos a los objetos
-        btnIngresar.addActionListener((new ActionListener() {
+        btnIngresar.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                btnIngresarActionPerformed(e);
-            }
-        }));
+            public void actionPerformed(ActionEvent e) { btnIngresarActionPerformed(e); }
+        });
 
         crearClienteButton.addActionListener(new ActionListener() {
             @Override
@@ -375,14 +378,20 @@ public class Cajero extends javax.swing.JFrame {
     }
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent e) {
+        //JOptionPane.showMessageDialog(null, "Usuario o clave no válidos");
         Datos datosCuenta = new Datos();
-        if(!datosCuenta.validarUsuario(txtUsuario.getText(), new String((txtClave.getPassword())))) {
-            JOptionPane.showMessageDialog(null, "Usuario o contraseÃ±a no validos");
-            txtUsuario.setText((""));
+        if(!datosCuenta.validarUsuario(txtUsuario.getText(), new String(txtClave.getPassword()))) {
+            JOptionPane.showMessageDialog(null, "Usuario o clave no válidos");
+            txtUsuario.setText("");
             txtClave.setText("");
             txtUsuario.requestFocusInWindow();
             return;
         }
+        crearClienteButton.setVisible(true);
+        cmbCuentas.setVisible(true);
+        salirButton1.setVisible(true);
+        salirButton.setVisible(true);
+        movimientosDeCuentasButton.setVisible(true);
 
     }
 
