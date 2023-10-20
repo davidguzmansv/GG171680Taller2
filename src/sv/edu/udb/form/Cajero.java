@@ -59,6 +59,7 @@ public class Cajero extends javax.swing.JFrame {
     private JLabel lblAbono;
     private JScrollPane jscuentas;
     private JScrollPane jsdatos;
+    private JLabel lblop;
     DefaultTableModel model=null;
 
     public Cajero(String title) {
@@ -107,6 +108,7 @@ public class Cajero extends javax.swing.JFrame {
         salirButton1.setVisible(false);
         salirButton.setVisible(false);
         movimientosDeCuentasButton.setVisible(false);
+        lblop.setVisible(false);
         // crear objetos
         btningresaraCuentas = new JButton("Ingresar a cuentas");
         //btnIngresar = new JButton("Ingresar");
@@ -401,12 +403,14 @@ public class Cajero extends javax.swing.JFrame {
             return;
         }
         crearClienteButton.setVisible(true);
-        cmbCuentas.setVisible(true);
-        salirButton1.setVisible(true);
-        salirButton.setVisible(true);
         movimientosDeCuentasButton.setVisible(true);
-
-
+        salirButton.setVisible(true);
+        lblop.setVisible(true);
+        lblUsuario.setVisible(false);
+        lblClave.setVisible(false);
+        txtClave.setVisible(false);
+        txtUsuario.setVisible(false);
+        btnIngresar.setVisible(false);
     }
 
 
