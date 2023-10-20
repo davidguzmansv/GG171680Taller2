@@ -173,12 +173,6 @@ public class Cajero extends javax.swing.JFrame {
                 cmbCuentas();
             }
         });
-        agregarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                agregarButton();
-            }
-        });
         tblcuentas.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -186,19 +180,43 @@ public class Cajero extends javax.swing.JFrame {
                 tblcuentas(e);
             }
         });
+        agregarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                agregarButton();
+            }
+        });
     }
     private void agregarButton(){
+        String nombre;
+        String dui;
+        String cuenta1;
 
+        nombre = txtNombre.getText();
+        dui = txtDui.getText();
+        cuenta1 = txtInicial.getText();
+
+        JOptionPane.showMessageDialog(null,"Datos Obtenidos: \n Nombre " +nombre+
+                "\n Dui: "+ dui+"\n Cuenta: "+cuenta1);
+
+        Object [] newRow={
+                nombre,
+                dui,
+                cuenta1 };
+
+        model.addRow(newRow);
     }
     private void cmbCuentas(){
         if(cmbCuentas.getSelectedIndex() == 0){
             lblDui.setVisible(true);
             lblPin.setVisible(true);
+            lblNombre.setVisible(true);
             lblInicial.setVisible(true);
             lblRetiro.setVisible(false);
             lblAbono.setVisible(false);
             txtDui.setVisible(true);
             txtPin.setVisible(true);
+            txtNombre.setVisible(true);
             txtInicial.setVisible(true);
             txtAbono.setVisible(false);
             txtRetiro.setVisible(false);
@@ -309,14 +327,9 @@ public class Cajero extends javax.swing.JFrame {
         int columna = tblcuentas.columnAtPoint(e.getPoint());
 
         if((fila > -1) && (columna > -1)){
-            txtId.setText(model.getValueAt(fila,0).toString());
-            txtNombre.setText(model.getValueAt(fila,1).toString());
-            txtDui.setText(model.getValueAt(fila,3).toString());
-            txtPin.setText(model.getValueAt(fila,4).toString());
-            txtCuenta1.setText(model.getValueAt(fila,5).toString());
-            txtCuenta2.setText(model.getValueAt(fila,6).toString());
-            txtCuenta3.setText(model.getValueAt(fila,7).toString());
-            txtCuenta4.setText(model.getValueAt(fila,8).toString());
+            txtNombre.setText(model.getValueAt(fila,0).toString());
+            txtDui.setText(model.getValueAt(fila,1).toString());
+            txtCuenta1.setText(model.getValueAt(fila,2).toString());
         }
     }
     private void guardarButton(){
@@ -392,6 +405,7 @@ public class Cajero extends javax.swing.JFrame {
         salirButton1.setVisible(true);
         salirButton.setVisible(true);
         movimientosDeCuentasButton.setVisible(true);
+
 
     }
 
