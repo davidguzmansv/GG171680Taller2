@@ -106,7 +106,7 @@ public class Cajero extends javax.swing.JFrame {
         crearClienteButton.setVisible(false);
         cmbCuentas.setVisible(false);
         salirButton1.setVisible(false);
-        salirButton.setVisible(false);
+        //salirButton.setVisible(false);
         movimientosDeCuentasButton.setVisible(false);
         lblop.setVisible(false);
         // crear objetos
@@ -169,6 +169,21 @@ public class Cajero extends javax.swing.JFrame {
                 salirButton1();
             }
         });
+
+        retirarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                retirarButton();
+            }
+        });
+
+        abonarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abonarButton();
+            }
+        });
+
         cmbCuentas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -186,6 +201,13 @@ public class Cajero extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 agregarButton();
+            }
+        });
+
+        abonarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abonarButton();
             }
         });
     }
@@ -207,7 +229,58 @@ public class Cajero extends javax.swing.JFrame {
                 cuenta1 };
 
         model.addRow(newRow);
+
+        this.saveDataInCsvCuentas(nombre, dui, cuenta1);
     }
+
+    private void retirarButton(){
+        String cuenta;
+        String abono;
+        String retiro;
+        String saldo;
+
+        cuenta = txtNombre.getText();
+        abono = "0.0";
+        retiro = txtRetiro.getText();
+
+
+        JOptionPane.showMessageDialog(null,"Datos Obtenidos: \n cuenta " +cuenta+
+                "\n Abono: 0.0 "+"\n Retiro: "+retiro);
+
+        Object [] newRow={
+                cuenta,
+                abono,
+                retiro };
+
+        model.addRow(newRow);
+
+        this.saveDataInCsvMovimientos(cuenta, abono, retiro);
+    }
+
+    private void abonarButton(){
+        String cuenta;
+        String abono;
+        String retiro;
+        String saldo;
+
+        cuenta = txtNombre.getText();
+        abono =  txtAbono.getText();
+        retiro = "0.0";
+
+
+        JOptionPane.showMessageDialog(null,"Datos Obtenidos: \n cuenta " +cuenta+
+                "\n Abono: "+abono+"\n Retiro: 0.0");
+
+        Object [] newRow={
+                cuenta,
+                abono,
+                retiro };
+
+        model.addRow(newRow);
+
+        this.saveDataInCsvMovimientos(cuenta, abono, retiro);
+    }
+
     private void cmbCuentas(){
         if(cmbCuentas.getSelectedIndex() == 0){
             lblDui.setVisible(true);
@@ -404,7 +477,7 @@ public class Cajero extends javax.swing.JFrame {
         }
         crearClienteButton.setVisible(true);
         movimientosDeCuentasButton.setVisible(true);
-        salirButton.setVisible(true);
+        //salirButton.setVisible(true);
         lblop.setVisible(true);
         lblUsuario.setVisible(false);
         lblClave.setVisible(false);
@@ -470,5 +543,50 @@ public class Cajero extends javax.swing.JFrame {
         }
     }
 
+    private void saveDataInCsvCuentas(String nombre, String dui,String cuenta1){
+        FileWriter fileCsv = null;
+        String path = System.getProperty("user.dir");
+        BufferedReader br = null;
+
+        try{
+            fileCsv = new FileWriter(path + "/src/sv/edu/udb/util/cuentas.csv", true);
+            PrintWriter writer = new PrintWriter(fileCsv);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("\n");
+            sb.append(nombre+","+dui+","+cuenta1);
+
+            writer.write(sb.toString());
+            writer.close();
+
+            //this.loadDataFromCsvToTable();
+        }
+        catch(Exception e){
+            System.out.print(e.toString());
+        }
+    }
+
+    private void saveDataInCsvMovimientos(String nombre, String dui,String cuenta1){
+        FileWriter fileCsv = null;
+        String path = System.getProperty("user.dir");
+        BufferedReader br = null;
+
+        try{
+            fileCsv = new FileWriter(path + "/src/sv/edu/udb/util/movimientos.csv", true);
+            PrintWriter writer = new PrintWriter(fileCsv);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("\n");
+            sb.append(nombre+","+dui+","+cuenta1);
+
+            writer.write(sb.toString());
+            writer.close();
+
+            //this.loadDataFromCsvToTable();
+        }
+        catch(Exception e){
+            System.out.print(e.toString());
+        }
+    }
 
 }
