@@ -323,15 +323,15 @@ public class Cajero extends javax.swing.JFrame {
             lblPin.setVisible(true);
             txtDui.setVisible(true);
             txtPin.setVisible(true);
-            lblInicial.setVisible(false);
+            lblInicial.setVisible(true);
             lblRetiro.setVisible(false);
-            lblAbono.setVisible(false);
-            txtInicial.setVisible(false);
-            txtAbono.setVisible(false);
+            lblAbono.setVisible(true);
+            txtInicial.setVisible(true);
+            txtAbono.setVisible(true);
             txtRetiro.setVisible(false);
             retirarButton.setVisible(false);
             agregarButton.setVisible(false);
-            abonarButton.setVisible(false);
+            abonarButton.setVisible(true);
             jscuentas.setVisible(true);
             tblcuentas.setVisible(true);
         }
